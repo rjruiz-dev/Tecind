@@ -1,0 +1,1 @@
+| <a href="{{ $url_restore }}" class="btn-restore" title="{{ $usuarios->name }}"><i class="fa fa-reply-all text-primary"></i></a> | 
