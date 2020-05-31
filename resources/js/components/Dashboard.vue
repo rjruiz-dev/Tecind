@@ -14,7 +14,7 @@
                         <div class="col-md-6">
                             <div class="box box-primary">
                                 <div class="box-header with-border">
-                                    <h3 class="box-title">Ordenes de los dos ultimos meses</h3>
+                                    <h3 class="box-title">Ordenes de los dos ultimos meses en curso</h3>
                                     <div class="box-tools pull-right">
                                         <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i>
                                         </button>
@@ -34,7 +34,7 @@
                                                 </div>                               
                                             </div>
                                             <div class="card-footer">
-                                                <p>Ordenes de los ultimos 2 meses.</p>
+                                                <p>Ordenes de los ultimos 2 meses en curso.</p>
                                             </div>
                                         </div>
                                     <!-- </div> -->
@@ -45,7 +45,7 @@
                         <div class="col-md-6">
                             <div class="box box-primary">
                                 <div class="box-header with-border">
-                                    <h3 class="box-title">Estados de las ordenes del ultimo mes</h3>
+                                    <h3 class="box-title">Estados de las ordenes del dia</h3>
                                     <div class="box-tools pull-right">
                                         <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i>
                                         </button>
@@ -65,7 +65,7 @@
                                             </div>                               
                                         </div>
                                         <div class="card-footer">
-                                            <p>Estados de las ordenes del ultimo mes.</p>
+                                            <p>Estados de las ordenes del dia.</p>
                                         </div>
                                     </div>
                                 </div> 

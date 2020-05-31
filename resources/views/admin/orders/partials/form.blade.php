@@ -30,9 +30,8 @@
                     <div class="input-group">
                         <div class="input-group-addon">
                             <i class="fa fa-industry"></i>
-                        </div>               
-                    <select name="name_company" id="name_company" class="form-control select2">
-                    <!-- <select name="name_company" id="name_company" class="form-control select2" {{{$enable}}}> -->
+                        </div>                        
+                    <select name="name_company" id="name_company" class="form-control select2" {{{$enable}}}>
                         <option value=""></option>
                         @foreach ($clients as $client)          
                             <option value="{{ $client->company['id'] }}"
@@ -161,9 +160,8 @@
                     <div class="input-group">
                         <div class="input-group-addon">
                             <i class="fa fa-user"></i>
-                        </div>  
-                        <select name="name" id="name" class="form-control select2">      
-                        <!-- <select name="name" id="name" class="form-control select2" {{{$enable}}}>                     -->
+                        </div>                     
+                        <select name="name" id="name" class="form-control select2" {{{$enable}}}>                    
                             <option value=""></option>
                             @foreach ($users as $user)
                                 <option value="{{ $user->id }}"
@@ -197,33 +195,43 @@
             </div>             
             <div class="box-body">
                 <div class="form-row">
-                    <div class="form-group col-md-6">                             
+                    <div class="form-group col-md-6">
+                                            
                         {!! Form::label('denomination', 'Pieza') !!}                  
                         <div class="input-group">
                             <div class="input-group-addon">
                                 <i class="fa fa-edit"></i>
                             </div>                                      
-                            {!! Form::select('denomination', $orders, $order->id, ['class' => 'form-control select2', 'id' => 'denomination', 'placeholder' => '']) !!}
+                            {!! Form::select('denomination', $orders, $order->id, ['class' => 'form-control', 'id' => 'denomination', 'placeholder' => '', $enable]) !!}
                         </div>
-                    </div>                                
+                    </div> 
+                    <div class="form-group col-md-6"> 
+                        {!! Form::label('order', 'Número de Orden') !!}                 
+                        <div class="input-group">
+                            <div class="input-group-addon">
+                                <i class="fa fa-edit"></i>
+                            </div>                                   
+                            {!! Form::text('order', $order->order, ['class' => 'form-control', 'id' => 'order', 'placeholder' => 'Ingresa número de orden', $enable]) !!}                        
+                        </div>
+                    </div>                               
                     <div class="form-group col-md-6">                    
                         {!! Form::label('code', 'Número de pieza') !!}                          
                         <div class="input-group">
                             <div class="input-group-addon">
                                 <i class="fa fa-edit"></i>
                             </div>                                   
-                            {!! Form::text('code',  $order->code, ['class' => 'form-control', 'id' => 'code', 'placeholder' => 'Ingresa número de pieza']) !!}
+                            {!! Form::text('code',  $order->code, ['class' => 'form-control', 'id' => 'code', 'placeholder' => 'Ingresa número de pieza', $enable]) !!}
                         </div>
-                    </div>
+                    </div>                    
                     <div class="form-group col-md-6"> 
                         {!! Form::label('quantity', 'Cantidad') !!}                 
                         <div class="input-group">
                             <div class="input-group-addon">
                                 <i class="fa fa-edit"></i>
                             </div>                                   
-                            {!! Form::number('quantity', null, ['class' => 'form-control', 'id' => 'quantity', 'placeholder' => 'Ingresa cantidad a fabricar']) !!}                        
+                            {!! Form::number('quantity', $order->quantity, ['class' => 'form-control', 'id' => 'quantity', 'placeholder' => 'Ingresa cantidad a fabricar', $enable]) !!}                        
                         </div>
-                    </div>
+                    </div>                   
                 </div>               
             </div>       
         </div>  

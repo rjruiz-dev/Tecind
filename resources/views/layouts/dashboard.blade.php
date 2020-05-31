@@ -92,12 +92,12 @@
         <div class="col-md-6">
             <div class="box box-primary">
                 <div class="box-header with-border">
-                    <h3 class="box-title">Ranking de ordenes por operario</h3>
+                    <h3 class="box-title">Ordenes por operario del dia</h3>
                     <div class="box-tools pull-right">
                         <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i>
                         </button>
                         <button type="button" class="btn btn-box-tool" data-widget="remove"><i class="fa fa-times"></i></button>
-                    </div>
+                    </div>                    
                 </div>
                 <div class="box-body"> 
                     <div class="card card-chart">
@@ -106,7 +106,8 @@
                         </div>
                         <div class="card-content">
                             <div class="form-row">                           
-                                <div class="form-group col-md-6">                           
+                                <div class="form-group col-md-6">
+                                                          
                                     <label>Estados</label>                                                                  
                                     <div class="input-group">
                                         <div class="input-group-addon">
@@ -115,7 +116,7 @@
                                         <select class="form-control" name="status" id="status">
                                             <option></option>                                                                                                  
                                         </select>                             
-                                    </div> 
+                                    </div>                                                      
                                 </div> 
                             </div>                                            
                             <div class="ct-chart">                          
@@ -123,7 +124,13 @@
                             </div>                               
                         </div>
                         <div class="card-footer">
-                    
+                            <div>
+                                <ul class="chart-legend clearfix">                                           
+                                    <li><i class="fa fa-circle-o text-yellow"></i> <label> En Proceso</label></li> 
+                                    <li><i class="fa fa-circle-o text-green"></i> <label> Terminado</label></li>
+                                    <li><i class="fa fa-circle-o text-red"></i> <label> No Terminado</label></li>                                                                                      
+                                </ul>
+                            </div>     
                         </div>
                     </div>                                          
                 </div>
@@ -132,7 +139,7 @@
         <div class="col-md-6">
             <div class="box box-primary">
                 <div class="box-header with-border">
-                    <h3 class="box-title">Ranking de piezas por operario</h3>
+                    <h3 class="box-title">Tiempos de mec. promedio por operario</h3>
                     <div class="box-tools pull-right">
                         <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i>
                         </button>

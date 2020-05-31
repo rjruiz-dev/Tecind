@@ -176,3 +176,4 @@ $('#pieces').on('change', function() {
     }           
 }); 
 
+getChartDataPiece();

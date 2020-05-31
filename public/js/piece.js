@@ -122,7 +122,7 @@ $('body').on('click', '.modal-show', function (event) {
         
             function obtenerDetalleDeGag(id) {
                 $.ajax({                  
-                    url: '/admin/pieces/' + id,
+                    url: '/admin/pieces/showGag/' + id,
                     type: 'GET',
                     data: {            
                         '_token': csrf_token

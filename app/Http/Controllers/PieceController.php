@@ -10,6 +10,7 @@ use App\Piece;
 use App\Program;
 use App\Order;
 use Illuminate\Http\Request;
+use Barryvdh\DomPDF\Facade as PDF;
 use Illuminate\Support\Facades\DB;
 use App\Http\Requests\SavePieceRequest;
 
@@ -103,7 +104,20 @@ class PieceController extends Controller
      * @param  \App\Piece  $Piece
      * @return \Illuminate\Http\Response
      */
-    public function show(Request $request, $id)
+    public function show($id)
+    { 
+        $pieces = Piece::with('gag', 'machine', 'tools', 'program')->findOrFail($id); 
+
+        $this->authorize('view', $pieces);
+  
+        return view('admin.pieces.show', compact('pieces'));
+
+      
+   
+   
+    }
+
+    public function showGag(Request $request, $id)
     {   
         $gags = Gag::findOrFail($id);       
              
@@ -228,6 +242,21 @@ class PieceController extends Controller
         // $piece->delete();
     }
 
+    public function exportPdf()
+    {
+        $pieces = Piece::with('gag', 'machine', 'tools', 'program')->get(); 
+        
+        $pdf = PDF::loadView('admin.pieces.show', compact('pieces'));  
+       
+        return $pdf->download('exportpdf.pdf');
+   
+    	// $users = User::get();
+    	// $pdf   = PDF::loadView('pdf.users', compact('users'));
+
+    	// return $pdf->download('user-list.pdf');
+    }
+
+
     public function dataTable()
     {    
         // $pieces = Piece::query()        
@@ -259,8 +288,8 @@ class PieceController extends Controller
                 ->addColumn('accion', function ($pieces) {
                     return view('admin.pieces.partials._action', [
                         'pieces'   => $pieces,
-                       
-                        'url_edit'  => route('admin.pieces.edit', $pieces->id)                      
+                        'url_show' => route('admin.pieces.show', $pieces->id),
+                        'url_edit' => route('admin.pieces.edit', $pieces->id)                      
                        
                     ]);
                 })

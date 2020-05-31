@@ -42,10 +42,12 @@ function(){
     Route::resource('reports',      'ReportController',         ['except' => ['create', 'store', 'update', 'show', 'destroy'], 'as' => 'admin']);
     Route::resource('dashboard',    'DashboardController',      ['except' => ['create', 'store', 'update', 'show', 'destroy'], 'as' => 'admin']);       
   
-    Route::get('orders/showOrder/{id}',         'OrderController@showOrder'); 
+    Route::get('orders/showOrder/{id}',         'OrderController@showOrder');
+    Route::get('pieces/showGag/{id}',           'PieceController@showGag');  
     Route::get('pieces/showMachine/{id}',       'PieceController@showMachine'); 
     Route::get('pieces/showOrder/{id}',         'PieceController@showOrder');  
-    Route::get('times/showMachine/{id}',        'TimeController@showMachine');  
+    Route::get('pieces/exportpdf',              'PieceController@exportPdf');
+    Route::get('times/showMachine/{id}',        'TimeController@showMachine');
 
     Route::get('notification/get',              'NotificationController@get');
 
@@ -64,6 +66,7 @@ function(){
     
     Route::delete('photos/{photo}',     'PhotosController@destroy')->name('admin.photos.destroy');    
     Route::post('posts/{post}/photos',  'PhotosController@store')->name('admin.posts.photos.store');    
+    
        
 });
 

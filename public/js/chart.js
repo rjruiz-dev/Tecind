@@ -61,7 +61,7 @@ function renderChart(order, operator, colors) {
         data: {
             labels: operator,
             datasets: [{
-                label: 'Terminadas',
+                label: 'Estados',              
                 data: order,
                 borderColor: 'rgba(75, 192, 192, 1)',
                 backgroundColor: colors,//"#229954",
@@ -75,13 +75,7 @@ function renderChart(order, operator, colors) {
                 yAxes: [{
                     id: "Ordenes",
                     ticks: {
-                        beginAtZero: true
-                        // suggestedMin: 0,
-                        // suggestedMax: 10  
-                        // stepSize: 1                         
-                        // callback: function (value, index, values) {
-                        //     return float2dollar(value);
-                        // }
+                        beginAtZero: true                      
                     },
                     scaleLabel: {
                         display: true,

@@ -88,7 +88,7 @@ class OrderController extends Controller
 
                 // para notificar a los usuarios
                 $allUsers = User::all();
-
+                print($order->user_id);
                 foreach ($allUsers as $notificar)
                 {
                     User::findOrFail($notificar->id)->notify(new NotifyAdmin($arregloDatos));
@@ -124,7 +124,7 @@ class OrderController extends Controller
 
     public function showOrder(Request $request, $id)
     {   
-        $order = Piece::findOrFail($id);   
+        $order = Order::findOrFail($id);   
                    
         if($request->ajax())
         {
@@ -154,8 +154,9 @@ class OrderController extends Controller
         return view('admin.orders.partials.form', [
             'clients'   => Client::all(),         
             'users'     => User::NotRole(['Admin', 'Supervisor'])->get(),
-            'status'    => Statu::pluck('statu', 'id'),            
-            'products'  => Order::pluck('denomination', 'denomination'),
+            'status'    => Statu::pluck('statu', 'id'),      
+            'orders'    => Order::pluck('denomination', 'id'),           
+            // 'products'  => Order::pluck('denomination', 'denomination'),
             'order'     => $order
         ]);        
         

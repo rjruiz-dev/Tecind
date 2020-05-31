@@ -79,7 +79,7 @@ class ClientController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function show($id)
-    {        
+    {      
         $client = Client::with('company')->findOrFail($id);
 
         $this->authorize('view', $client);
