@@ -20,7 +20,7 @@ use App\Order;
     <div class="panel panel-primary">        
         <div class="panel-heading">
             <h3 class="panel-title">Listado de Ordenes de Trabajo
-            @can('create', $order = new Order())
+            @can('Create orders', $order = new Order())
                 <a href="{{ route('admin.orders.create') }}" id="btn-btn-create" class="btn btn-success pull-right modal-show" style="margin-top: -8px;" title="Crear Orden"><i class="fa fa-plus-square"></i> Crear orden </a>
             @endcan  
             </h3>
@@ -81,6 +81,7 @@ use App\Order;
             responsive: true,
             processing: true,
             serverSide: true,
+            order: [ [0, 'desc'] ],           
             dom: 'Bfrtip',
             buttons: [
                 {

@@ -12,7 +12,7 @@ class CustomersTableSeeder extends Seeder
      */
     public function run()
     {       
-        factory(App\Client::class, 2)->create()->each(function ($client) {
+        factory(App\Client::class, 1)->create()->each(function ($client) {
           
             $company = factory(App\Company::class)->make();
             $client->company()->save($company);

@@ -7,6 +7,8 @@
 @endcan
 
 
+   <a href="{{ $url_print }}" ><i class="fa fa-download text-success"></i></a> |  
+
     
 
 

@@ -25,35 +25,35 @@ class SavePieceRequest extends FormRequest
     public function rules()
     {
 
-        // $rules = [
+        $rules = [
+            'part_piece'        => 'required',                    
+            'number_program'    => 'required',         
+            'time'              => 'required',            
+            'machine_id'        => 'required',
+            'order_id'          => 'required', 
+            'tools'             => 'required',        
+        ];
+
+        // Si es diferente a Post
+        if($this->method() !== 'PUT')
+        {
+            $rules ['number_gag' ]   = 'required' . $this->id;
+         
+                      
+        }
+
+        return $rules;    
+
+        // return [                               
         //     'part_piece'        => 'required',
         //     'number_gag'        => 'required',          
         //     'number_program'    => 'required',         
         //     'time'              => 'required',            
         //     'machine_id'        => 'required',
         //     'order_id'          => 'required', 
-        //     'tools'             => 'required',        
-        // ];
-
-        // // Si es diferente a Post
-        // if($this->method() !== 'PUT')
-        // {
-        //     $rules ['number_gag' ]   = 'required|string|number_gag|max:255|unique:gags,number_gag,' . $this->id;
-                      
-        // }
-
-        // return $rules;    
-
-        return [                               
-            'part_piece'        => 'required',
-            'number_gag'        => 'required',          
-            'number_program'    => 'required',         
-            'time'              => 'required',            
-            'machine_id'        => 'required',
-            'order_id'          => 'required', 
-            'tools'             => 'required', 
+        //     'tools'             => 'required', 
            
-        ];
+        // ];
     }
 
     public function messages()

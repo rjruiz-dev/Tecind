@@ -68,6 +68,7 @@ use App\Post;
             responsive: true,
             processing: true,
             serverSide: true,
+            order: [ [0, 'desc'] ],           
             ajax: "{{ route('post.table') }}",
             columns: [
                 {data: 'id', name: 'id'},

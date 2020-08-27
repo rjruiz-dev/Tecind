@@ -4,17 +4,17 @@
         'method' => $order->exists ? 'PUT' : 'POST'
     ]) !!}  
 
-    @if( auth()->user()->getRoleDisplayNames() == 'Administrador' )
-
-            @php 
-                $enable = '';
-                $readonly = '';
-            @endphp
+    @if( auth()->user()->getRoleDisplayNames() == 'Administrador' ||  auth()->user()->getRoleDisplayNames() == 'Supervisor') 
+        @php 
+            $enable = '';
+            $read = '';
+        @endphp
     @else
-            @php 
-                $enable = 'disabled';
-                $readonly = 'readonly';
-            @endphp
+        @php 
+       
+            $enable = 'disabled';
+            $read = 'readonly';
+        @endphp
     @endif
     
     <div class="col-md-6">    
@@ -30,17 +30,19 @@
                     <div class="input-group">
                         <div class="input-group-addon">
                             <i class="fa fa-industry"></i>
-                        </div>                        
-                    <select name="name_company" id="name_company" class="form-control select2" {{{$enable}}}>
+                        </div>
+                    <select name="name_company"  id="name_company" class="form-control select2" style="width:100%;" >
                         <option value=""></option>
                         @foreach ($clients as $client)          
-                            <option value="{{ $client->company['id'] }}"
+                            <option value="{{ $client->company['id'] }}" 
                             {{ old('name_company', $order->client_id) == $client->company['id'] ? 'selected' : ''}}>
                             {{ $client->company['name_company'] }}</option>                     
                         @endforeach  
                     </select>
                     </div>                                    
-                </div>               
+                </div>  
+               
+                <!-- <input type="hidden" name="company"  value="{{ $order->client_id }}"/>            -->
                 
                 <div class="form-group">                    
                     {!! Form::label('phone_company', 'Telefono empresa:') !!}
@@ -51,11 +53,11 @@
                     @if ($order->exists)
                         @foreach ($clients as $client) 
                             @if(old('phone_company', $order->client_id) == $client->company['id'])               
-                                {!! Form::text('phone_company', old('phone_company', $client->company['phone_company']), ['class' => 'form-control', 'id' => 'phone_company', 'disabled' => 'disabled', 'placeholder' => 'Telefono empresa']) !!}
+                                {!! Form::text('phone_company', old('phone_company', $client->company['phone_company']), ['class' => 'form-control', 'id' => 'phone_company', 'readonly' => true, 'placeholder' => 'Telefono empresa']) !!}
                             @endif
                         @endforeach  
                     @else
-                        {!! Form::text('phone_company', null, ['class' => 'form-control', 'id' => 'phone_company', 'disabled' => 'disabled', 'placeholder' => 'Telefono empresa']) !!}
+                        {!! Form::text('phone_company', null, ['class' => 'form-control', 'id' => 'phone_company', 'readonly' => true, 'placeholder' => 'Telefono empresa']) !!}
                     @endif
                     </div>
                 </div> 
@@ -69,11 +71,11 @@
                     @if ($order->exists) 
                         @foreach ($clients as $client)
                             @if(old('name_client', $order->client_id) == $client->company['id'])         
-                                {!! Form::text('name_client', old('name_client', $client['name_client']), ['class' => 'form-control', 'id' => 'name_client', 'disabled' => 'disabled', 'placeholder' => 'Nombre contacto']) !!}
+                                {!! Form::text('name_client', old('name_client', $client['name_client']), ['class' => 'form-control', 'id' => 'name_client', 'readonly' => true, 'placeholder' => 'Nombre contacto']) !!}
                             @endif
                         @endforeach
                     @else
-                        {!! Form::text('name_client', null, ['class' => 'form-control', 'id' => 'name_client', 'disabled' => 'disabled', 'placeholder' => 'Nombre contacto']) !!}
+                        {!! Form::text('name_client', null, ['class' => 'form-control', 'id' => 'name_client', 'readonly' => true, 'placeholder' => 'Nombre contacto']) !!}
                     @endif
                     </div>
                 </div>
@@ -87,11 +89,11 @@
                     @if ($order->exists) 
                         @foreach ($clients as $client) 
                             @if(old('phone_client', $order->client_id) == $client->company['id'])               
-                                {!! Form::text('phone_client', old('phone_client', $client['phone_client']), ['class' => 'form-control', 'id' => 'phone_client', 'disabled' => 'disabled', 'placeholder' => 'Telefono contacto']) !!}
+                                {!! Form::text('phone_client', old('phone_client', $client['phone_client']), ['class' => 'form-control', 'id' => 'phone_client', 'readonly' => true, 'placeholder' => 'Telefono contacto']) !!}
                             @endif
                         @endforeach
                     @else
-                        {!! Form::text('phone_client', null, ['class' => 'form-control', 'id' => 'phone_client', 'disabled' => 'disabled', 'placeholder' => 'Telefono contacto']) !!}
+                        {!! Form::text('phone_client', null, ['class' => 'form-control', 'id' => 'phone_client', 'readonly' => true, 'placeholder' => 'Telefono contacto']) !!}
                     @endif
                     </div>
                 </div>              
@@ -105,11 +107,11 @@
                     @if ($order->exists) 
                         @foreach ($clients as $client) 
                             @if(old('email', $order->client_id) == $client->company['id'])              
-                                {!! Form::text('email', old('email', $client['email']), ['class' => 'form-control', 'id' => 'email', 'disabled' => 'disabled', 'placeholder' => 'Email contacto']) !!}
+                                {!! Form::text('email', old('email', $client['email']), ['class' => 'form-control', 'id' => 'email', 'readonly' => true, 'placeholder' => 'Email contacto']) !!}
                             @endif
                         @endforeach                        
                     @else
-                        {!! Form::text('email', null, ['class' => 'form-control', 'id' => 'email', 'disabled' => 'disabled', 'placeholder' => 'Email contacto']) !!}
+                        {!! Form::text('email', null, ['class' => 'form-control', 'id' => 'email', 'readonly' => true, 'placeholder' => 'Email contacto']) !!}
                     @endif
                     </div>
                 </div>
@@ -129,7 +131,7 @@
                         <div class="input-group-addon">
                             <i class="fa  fa-pencil-square-o"></i>
                         </div>
-                        {!! Form::select('status', $status, $order->statu_id, ['class' => 'form-control select2', 'id' => 'status', 'placeholder' => '']) !!}
+                        {!! Form::select('status', $status, $order->statu_id, ['class' => 'form-control select2', 'id' => 'status', 'placeholder' => '',  'style' => 'width:100%;']) !!}
                       
                     </div>
                 </div>       
@@ -161,7 +163,7 @@
                         <div class="input-group-addon">
                             <i class="fa fa-user"></i>
                         </div>                     
-                        <select name="name" id="name" class="form-control select2" {{{$enable}}}>                    
+                        <select name="name" id="name" class="form-control select2" style="width:100%;">                    
                             <option value=""></option>
                             @foreach ($users as $user)
                                 <option value="{{ $user->id }}"
@@ -173,15 +175,15 @@
 
                 <div class="form-group">
                     <label>Fecha</label>
-                    <div class="input-group date">
+                    <div class="input-group date" >
                         <div class="input-group-addon">
                             <i class="fa fa-calendar"></i>
                         </div>                      
-                        <input name="date" {{{$readonly}}}
-                            class="form-control pull-right"                                                       
-                            value="{{ old('date', $order->date ? $order->date->format('m/d/Y') : null) }}"                            
+                        <input name="date" 
+                            class="form-control pull-right"            
+                            value="{{ old('acquired',$order->date ? $order->date->format('d/m/Y') : null) }}"
                             type="text"
-                            id="datepicker"
+                            id="date"
                             placeholder= "Selecciona una fecha">                       
                     </div>                  
                 </div>             
@@ -202,7 +204,7 @@
                             <div class="input-group-addon">
                                 <i class="fa fa-edit"></i>
                             </div>                                      
-                            {!! Form::select('denomination', $orders, $order->id, ['class' => 'form-control', 'id' => 'denomination', 'placeholder' => '', $enable]) !!}
+                            {!! Form::select('denomination', $orders, $order->denomination, ['class' => 'form-control', 'id' => 'denomination', 'placeholder' => '',  'style' => 'width:100%;', $read]) !!}
                         </div>
                     </div> 
                     <div class="form-group col-md-6"> 
@@ -211,7 +213,7 @@
                             <div class="input-group-addon">
                                 <i class="fa fa-edit"></i>
                             </div>                                   
-                            {!! Form::text('order', $order->order, ['class' => 'form-control', 'id' => 'order', 'placeholder' => 'Ingresa número de orden', $enable]) !!}                        
+                            {!! Form::text('order', $order->order, ['class' => 'form-control', 'id' => 'order', 'placeholder' => 'Ingresa número de orden', $read]) !!}                        
                         </div>
                     </div>                               
                     <div class="form-group col-md-6">                    
@@ -220,7 +222,7 @@
                             <div class="input-group-addon">
                                 <i class="fa fa-edit"></i>
                             </div>                                   
-                            {!! Form::text('code',  $order->code, ['class' => 'form-control', 'id' => 'code', 'placeholder' => 'Ingresa número de pieza', $enable]) !!}
+                            {!! Form::text('code',  $order->code, ['class' => 'form-control', 'id' => 'code', 'placeholder' => 'Ingresa número de pieza', $read]) !!}
                         </div>
                     </div>                    
                     <div class="form-group col-md-6"> 
@@ -229,7 +231,7 @@
                             <div class="input-group-addon">
                                 <i class="fa fa-edit"></i>
                             </div>                                   
-                            {!! Form::number('quantity', $order->quantity, ['class' => 'form-control', 'id' => 'quantity', 'placeholder' => 'Ingresa cantidad a fabricar', $enable]) !!}                        
+                            {!! Form::number('quantity', $order->quantity, ['class' => 'form-control', 'id' => 'quantity', 'placeholder' => 'Ingresa cantidad a fabricar', $read ]) !!}                        
                         </div>
                     </div>                   
                 </div>               

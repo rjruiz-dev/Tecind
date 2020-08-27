@@ -19,9 +19,10 @@ $('body').on('click', '.modal-show', function (event) {
             var date = new Date();
             date.setDate(date.getDate());
 
-            $('#datepicker').datepicker({
+            $('#date').datepicker({
                 autoclose: true,
-                todayHighlight: true,  
+                todayHighlight: true,
+                format: 'dd/mm/yyyy',          
                 startDate: date,              
                 language: 'es'
             });   
@@ -39,7 +40,7 @@ $('body').on('click', '.modal-show', function (event) {
 
             $('#name_company').select2({
                 placeholder: 'Selecciona un cliente',
-                tags: false              
+                tags: false ,                   
             });
 
             $('#status').select2({
@@ -154,9 +155,12 @@ $('body').on('click', '.modal-show', function (event) {
 $('#modal-btn-save').click(function (event) {
     event.preventDefault();
 
+    
+
     var form = $('#modal-body form'),
         url = form.attr('action'),
-        method = $('input[name=_method]').val() == undefined ? 'POST' : 'PUT';        
+        method = $('input[name=_method]').val() == undefined ? 'POST' : 'PUT';    
+              
 
     form.find('.help-block').remove();
     form.find('.form-group').removeClass('has-error');

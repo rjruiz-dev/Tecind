@@ -20,8 +20,12 @@
                     <li class="list-group-item">
                         <b>Telefono</b> <a class="pull-right">{{ $client->company->phone_company }}</a>
                     </li>
-                    <li class="list-group-item">
-                        <b>Web</b> <a class="pull-right">{{ $client->company->web }}</a>
+                    <li class="list-group-item">                   
+                        @if ( $client->company->web === NULL )       
+                        <b>Web</b> <a class="pull-right"><small class="tex-muted">No tiene sitio web asignado</small></a> 
+                        @else
+                            <b>Web</b> <a class="pull-right">{{ $client->company->web}}</a>                                                 
+                        @endif
                     </li>
                     <!-- <li class="list-group-item">
                         <b>Following</b> <a class="pull-right">543</a>
@@ -29,8 +33,6 @@
                                     
                 </ul>
                 <!-- <a href="#" class="btn btn-primary btn-block"><b>Editar</b></a> -->
-             
-                
             </div>
         <!-- /.box-body -->
         </div>

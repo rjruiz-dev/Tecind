@@ -66,7 +66,13 @@
                                         </div>
                                         <div class="card-footer">
                                             <p>Estados de las ordenes del dia.</p>
+                                            <ul class="chart-legend clearfix">                                           
+                                                <li><i class="fa fa-circle-o text-yellow"></i> <label> En Proceso</label></li> 
+                                                <li><i class="fa fa-circle-o text-green"></i> <label> Terminado</label></li>
+                                                <li><i class="fa fa-circle-o text-red"></i> <label> No Terminado</label></li>                                                                                      
+                                            </ul>
                                         </div>
+                                      
                                     </div>
                                 </div> 
                             </div>                          
@@ -175,16 +181,22 @@
                         datasets: [{
                             label: 'Estados',
                             data: me.varTotalEstados,                        
-                            backgroundColor: [       
-                                'rgba(183, 149, 11, 0.5)',
-                                'rgba(25, 111, 61, 0.5)',                      
-                                'rgba(123, 36, 28, 0.5)',                             
+                            backgroundColor: [
+                                '#F39C12',       
+                                '#27AE60',       
+                                '#C0392B',       
+                                // 'rgba(183, 149, 11, 0.5)',
+                                // 'rgba(25, 111, 61, 0.5)',                      
+                                // 'rgba(123, 36, 28, 0.5)',                             
                             ],
                           
                             borderColor: [  
-                            'rgba(183, 149, 11, 0.5)',   
-                            'rgba(25, 111, 61, 0.5)',                      
-                            'rgba(123, 36, 28, 0.5)',                                          
+                                '#F39C12',       
+                                '#27AE60',       
+                                '#C0392B',
+                            // 'rgba(183, 149, 11, 0.5)',   
+                            // 'rgba(25, 111, 61, 0.5)',                      
+                            // 'rgba(123, 36, 28, 0.5)',                                          
                             ],
                             borderWidth: 1
                         }]

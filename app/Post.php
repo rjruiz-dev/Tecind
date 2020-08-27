@@ -36,7 +36,6 @@ class Post extends Model
     {
         return 'url';
     }
-
    
     public function category()
     {

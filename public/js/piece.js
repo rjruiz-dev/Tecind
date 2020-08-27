@@ -39,7 +39,7 @@ $('body').on('click', '.modal-show', function (event) {
             
             $('#number_gag').select2({
                 placeholder: 'Selecciona número',
-                tags: true               
+                tags: false,              
             }); 
                 
             $("#code").keyup(function () {
@@ -118,8 +118,8 @@ $('body').on('click', '.modal-show', function (event) {
             number_gagSelect.on('change', function() {                
                 var id = $(this).val();               
                 obtenerDetalleDeGag(id)               
-            });            
-        
+            }); 
+            
             function obtenerDetalleDeGag(id) {
                 $.ajax({                  
                     url: '/admin/pieces/showGag/' + id,
@@ -130,7 +130,8 @@ $('body').on('click', '.modal-show', function (event) {
                     dataType: 'json',
                     success: function (response) {
 
-                        console.log(response);                       
+                        console.log(response);   
+                                      
                         llenarInputs(response);
                     },
                     error: function () { 
@@ -189,6 +190,7 @@ $('body').on('click', '.modal-show', function (event) {
 
     $('#modal').modal('show');      
 });
+
 
 
 $('#modal-btn-save').click(function (event) {

@@ -1879,71 +1879,6 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
@@ -1956,18 +1891,7 @@ __webpack_require__.r(__webpack_exports__);
       charEstados: null,
       estados: [],
       varTotalEstados: [],
-      varMesEstados: [] // varUser_Order:null,
-      // charUser_Order:null,
-      // User_Order:[],
-      // varTotalUser_Order:[],               
-      // varMesUser_Order:[],
-      // varUser_id:[],
-      // varOrders:null,
-      // charOrders:null,
-      // orders:[],
-      // varTotalOrders:[],               
-      // varMesOrders:[],
-
+      varMesEstados: []
     };
   },
   methods: {
@@ -1996,28 +1920,6 @@ __webpack_require__.r(__webpack_exports__);
         console.log(error);
       });
     },
-    // getOperarios(user=0,status=0,month=0){
-    //     let me=this;
-    //     var url= '/admin/dashboard/getOrders/'+user+'/'+status+'/'+month;
-    //     axios.get(url).then(function (response) {
-    //         //  console.log(response);
-    //         var respuesta = response.data;
-    //         me.orders = respuesta.orders;
-    //         me.users = respuesta.users;
-    //         var select_users = document.getElementById("select_users");
-    //         $.each(me.users, function(key, value) {
-    //             var option = document.createElement("option");
-    //             option.text = value.name;
-    //             option.value = value.id;
-    //             select_users.add(option);
-    //         });
-    //         // //cargamos los datos del chart
-    //         me.loadOperarios();
-    //     })
-    //     .catch(function (error) {
-    //         console.log(error);
-    //     });
-    // }, 
     loadOrdenes: function loadOrdenes() {
       var me = this;
       me.ordenes.map(function (x) {
@@ -2062,8 +1964,14 @@ __webpack_require__.r(__webpack_exports__);
           datasets: [{
             label: 'Estados',
             data: me.varTotalEstados,
-            backgroundColor: ['rgba(183, 149, 11, 0.5)', 'rgba(25, 111, 61, 0.5)', 'rgba(123, 36, 28, 0.5)'],
-            borderColor: ['rgba(183, 149, 11, 0.5)', 'rgba(25, 111, 61, 0.5)', 'rgba(123, 36, 28, 0.5)'],
+            backgroundColor: ['#F39C12', '#27AE60', '#C0392B' // 'rgba(183, 149, 11, 0.5)',
+            // 'rgba(25, 111, 61, 0.5)',                      
+            // 'rgba(123, 36, 28, 0.5)',                             
+            ],
+            borderColor: ['#F39C12', '#27AE60', '#C0392B' // 'rgba(183, 149, 11, 0.5)',   
+            // 'rgba(25, 111, 61, 0.5)',                      
+            // 'rgba(123, 36, 28, 0.5)',                                          
+            ],
             borderWidth: 1
           }]
         },
@@ -2077,42 +1985,11 @@ __webpack_require__.r(__webpack_exports__);
           }
         }
       });
-    } // loadOperarios(){
-    //     let me=this;
-    //     me.orders.map(function(x){                    
-    //         me.varMesOrders.push(x.name);
-    //         me.varTotalOrders.push(x.orders_by_user);
-    //         // me.varUser_id.push(x.user_id);
-    //     });
-    //     me.varOrders=document.getElementById('order').getContext('2d');
-    //     me.charOrders = new Chart(me.varOrders, {
-    //         type: 'bar',
-    //         data: {
-    //             labels: me.varMesOrders, 
-    //             datasets: [{
-    //                 label: 'Ordenes',
-    //                 data: me.varTotalOrders,
-    //                 backgroundColor: 'rgba(25, 111, 61, 0.5)',
-    //                 borderColor: 'rgba(25, 111, 61, 0.5)',                         
-    //                 borderWidth: 1
-    //             }]
-    //         },
-    //         options: {
-    //             scales: {
-    //                 yAxes: [{
-    //                     ticks: {
-    //                         beginAtZero:true
-    //                     }
-    //                 }]
-    //             }
-    //         }
-    //     });
-    // } 
-
+    }
   },
   mounted: function mounted() {
     this.getOrdenes();
-    this.getEstados(); // this.getOperarios();             
+    this.getEstados();
   }
 });
 
@@ -48735,7 +48612,7 @@ var staticRenderFns = [
                 _c("div", { staticClass: "box box-primary" }, [
                   _c("div", { staticClass: "box-header with-border" }, [
                     _c("h3", { staticClass: "box-title" }, [
-                      _vm._v("Ordenes de los dos ultimos meses")
+                      _vm._v("Ordenes de los dos ultimos meses en curso")
                     ]),
                     _vm._v(" "),
                     _c("div", { staticClass: "box-tools pull-right" }, [
@@ -48772,7 +48649,9 @@ var staticRenderFns = [
                       ]),
                       _vm._v(" "),
                       _c("div", { staticClass: "card-footer" }, [
-                        _c("p", [_vm._v("Ordenes de los ultimos 2 meses.")])
+                        _c("p", [
+                          _vm._v("Ordenes de los ultimos 2 meses en curso.")
+                        ])
                       ])
                     ])
                   ])
@@ -48783,7 +48662,7 @@ var staticRenderFns = [
                 _c("div", { staticClass: "box box-primary" }, [
                   _c("div", { staticClass: "box-header with-border" }, [
                     _c("h3", { staticClass: "box-title" }, [
-                      _vm._v("Estados de las ordenes del ultimo mes")
+                      _vm._v("Estados de las ordenes del dia")
                     ]),
                     _vm._v(" "),
                     _c("div", { staticClass: "box-tools pull-right" }, [
@@ -48820,17 +48699,37 @@ var staticRenderFns = [
                       ]),
                       _vm._v(" "),
                       _c("div", { staticClass: "card-footer" }, [
-                        _c("p", [
-                          _vm._v("Estados de las ordenes del ultimo mes.")
+                        _c("p", [_vm._v("Estados de las ordenes del dia.")]),
+                        _vm._v(" "),
+                        _c("ul", { staticClass: "chart-legend clearfix" }, [
+                          _c("li", [
+                            _c("i", {
+                              staticClass: "fa fa-circle-o text-yellow"
+                            }),
+                            _vm._v(" "),
+                            _c("label", [_vm._v(" En Proceso")])
+                          ]),
+                          _vm._v(" "),
+                          _c("li", [
+                            _c("i", {
+                              staticClass: "fa fa-circle-o text-green"
+                            }),
+                            _vm._v(" "),
+                            _c("label", [_vm._v(" Terminado")])
+                          ]),
+                          _vm._v(" "),
+                          _c("li", [
+                            _c("i", { staticClass: "fa fa-circle-o text-red" }),
+                            _vm._v(" "),
+                            _c("label", [_vm._v(" No Terminado")])
+                          ])
                         ])
                       ])
                     ])
                   ])
                 ])
               ])
-            ]),
-            _vm._v(" "),
-            _c("div", { staticClass: "row" })
+            ])
           ])
         ])
       ])

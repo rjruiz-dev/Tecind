@@ -15,7 +15,7 @@ Route::get('nosotros',  'PagesController@about')->name('pages.about');
 Route::get('archivos',  'PagesController@archive')->name('pages.archive');
 Route::get('contacto',  'PagesController@contact')->name('pages.contact');
 
-Route::get('blog/{post}',           'BlogController@show')->name('posts.show');;
+Route::get('blog/{post}',           'BlogController@show')->name('posts.show');
 Route::get('tags/{tag}',            'TagsController@show')->name('tags.show');
 Route::get('categorias/{category}', 'CategoriesController@show')->name('categories.show');
 
@@ -46,7 +46,7 @@ function(){
     Route::get('pieces/showGag/{id}',           'PieceController@showGag');  
     Route::get('pieces/showMachine/{id}',       'PieceController@showMachine'); 
     Route::get('pieces/showOrder/{id}',         'PieceController@showOrder');  
-    Route::get('pieces/exportpdf',              'PieceController@exportPdf');
+    Route::get('pieces/exportpdf/{id}',         'PieceController@exportPdf')->name('legajo.pdf');    
     Route::get('times/showMachine/{id}',        'TimeController@showMachine');
 
     Route::get('notification/get',              'NotificationController@get');

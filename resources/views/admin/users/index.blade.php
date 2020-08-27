@@ -19,7 +19,7 @@ use App\User;
     <div class="panel panel-primary">        
         <div class="panel-heading">
             <h3 class="panel-title">Listado de usuarios     
-            @can('create', $user = new User())
+            @can('Create users', $user = new User())
                 <a href="{{ route('admin.users.create') }}"  id="btn-btn-create" class="btn btn-success pull-right modal-show" style="margin-top: -8px;" title="Crear Usuario"><i class="fa fa-user-plus"></i> Crear usuario</a>
             @endcan
             </h3>

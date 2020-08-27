@@ -11,6 +11,7 @@ use App\Program;
 use App\Order;
 use Illuminate\Http\Request;
 use Barryvdh\DomPDF\Facade as PDF;
+
 use Illuminate\Support\Facades\DB;
 use App\Http\Requests\SavePieceRequest;
 
@@ -64,6 +65,7 @@ class PieceController extends Controller
      */
     public function store(SavePieceRequest $request)
     {
+        // dd($request->all());
         if ($request->ajax()){
             try {
                 //  Transacciones
@@ -71,6 +73,7 @@ class PieceController extends Controller
                
                 $this->authorize('create', new Piece);
 
+                
                 $program = Program::create($request->all());
             
                 $piece = $program->piece()->create([
@@ -197,7 +200,7 @@ class PieceController extends Controller
             try {
                 //  Transacciones
                 DB::beginTransaction();  
-                
+                // dd($request->all());
                 $piece = Piece::with('program')->findOrFail($id); 
 
                 $this->authorize('update', $piece);
@@ -214,7 +217,7 @@ class PieceController extends Controller
                 ]);
               
                 $piece->program->update($request->all());
-                
+               
                 $piece->syncTools($request->get('tools'));
                 
                 
@@ -244,11 +247,11 @@ class PieceController extends Controller
 
     public function exportPdf()
     {
-        $pieces = Piece::with('gag', 'machine', 'tools', 'program')->get(); 
+        $pieces = Piece::with('gag', 'machine', 'tools', 'program')->first(); 
         
         $pdf = PDF::loadView('admin.pieces.show', compact('pieces'));  
        
-        return $pdf->download('exportpdf.pdf');
+        return $pdf->download('legajo.pdf');
    
     	// $users = User::get();
     	// $pdf   = PDF::loadView('pdf.users', compact('users'));
@@ -270,7 +273,7 @@ class PieceController extends Controller
                 })  
                 ->addColumn('pieza', function ($pieces){
                     return
-                    '<i class="fa fa-check-square-o"></i>'.' '.$pieces->order['code']."<br>".                   
+                    '<i class="fa fa-check-square-o"></i>'.' '.$pieces->order['code']."<br>".                  
                     '<i class="fa fa-wrench"></i>'.' '.$pieces->order['denomination'];
                 })                 
                 ->addColumn('maq_op', function ($pieces){                    
@@ -289,7 +292,8 @@ class PieceController extends Controller
                     return view('admin.pieces.partials._action', [
                         'pieces'   => $pieces,
                         'url_show' => route('admin.pieces.show', $pieces->id),
-                        'url_edit' => route('admin.pieces.edit', $pieces->id)                      
+                        'url_edit' => route('admin.pieces.edit', $pieces->id),           
+                        'url_print' => route('legajo.pdf', $pieces->id)                      
                        
                     ]);
                 })

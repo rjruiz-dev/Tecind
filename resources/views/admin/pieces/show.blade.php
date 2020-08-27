@@ -1,26 +1,23 @@
+<!DOCTYPE html>
 
-@extends('layouts.app')
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title>Tecind&nbsp;S.A. | Starter</title>
+  <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport"> 
+  <meta name="userId" content="{{ Auth::check() ? Auth::user()->id : ''}}">
+  <meta name="csrf-token" content="{{ csrf_token() }}">  
+  <link rel="stylesheet" href="/adminlte/bower_components/bootstrap/dist/css/bootstrap.min.css"> 
+  <link rel="stylesheet" href="/adminlte/bower_components/font-awesome/css/font-awesome.min.css">   
+  <link rel="stylesheet" href="/adminlte/bower_components/Ionicons/css/ionicons.min.css">
+  <link rel="stylesheet" href="/adminlte/css/AdminLTE.min.css">  
+  <link rel="stylesheet" href="/adminlte/css/skins/skin-blue.min.css">
+</head>
 
-@section('header')    
-    <meta name="csrf-token" content="{{ csrf_token() }}">
-    <h1>
-        LEGAJOS
-        <small>Listado </small>
-    </h1>
-    <ol class="breadcrumb">
-        <li><a href="{{ url('/admin/pieces') }}"><i class="fa fa-folder-open"></i> Volver</a></li>
-        <li class="active">Legajos</li>
-    </ol>   
-    <div class="pad margin no-print">
-        <div class="callout callout-info" style="margin-bottom: 0!important;">
-            <h4><i class="fa fa-info"></i> Note:</h4>
-            This page has been enhanced for printing. Click the print button at the bottom of the invoice to test.
-        </div>
-    </div>
-@stop
+<body class="hold-transition skin-blue sidebar-mini">
 
-@section('content')
-    <section class="invoice">     
+<section class="invoice">     
         <div class="row">
             <div class="col-xs-12">
                 <h2 class="page-header">
@@ -107,7 +104,7 @@
                 <b>Account:</b> 968-34567
             </div>      
         </div> -->
-        <div class="row"> 
+        <div class="row">             
             <div class="col-xs-4">
                 <p class="lead">Datos de Mordaza</p>
 
@@ -131,7 +128,7 @@
                     </tr>
                     </table>
                 </div>
-            </div>          
+            </div>   
             <div class="col-xs-4">
                 <p class="lead">Datos del Programa</p>
 
@@ -170,6 +167,7 @@
             </div>        
         </div>
 
+
         <div class="row no-print">
             <div class="col-xs-12"> 
                 <!-- <button type="button" class="btn btn-primary pull-right" style="margin-right: 5px;"><i class="fa fa-download"></i> Generate PDF</button> -->
@@ -177,4 +175,10 @@
             </div>
         </div>     
     </section>
-@stop
+
+
+<script src="/adminlte/bower_components/jquery/dist/jquery.min.js"></script>
+<script src="/adminlte/bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
+<script src="/adminlte/js/adminlte.min.js"></script>
+</body>
+</html>

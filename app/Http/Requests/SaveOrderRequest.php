@@ -2,6 +2,7 @@
 
 namespace App\Http\Requests;
 
+use Illuminate\Validation\Rule;
 use Illuminate\Foundation\Http\FormRequest;
 
 class SaveOrderRequest extends FormRequest
@@ -23,14 +24,33 @@ class SaveOrderRequest extends FormRequest
      */
     public function rules()
     {
-        return [            
-            'name_company'  => 'required',            
-            'name'          => 'required',
-            'order'         => 'required|numeric|unique:orders',           
-            'denomination'  => 'required'           
-                                     
+        $rules = [           
+            // 'name_company'  => 'required', 
+            'name'          => 'required',            
+            'denomination'  => 'required',
+            'code'          => 'required',
+            'quantity'      => 'required',
+            'date'          => 'required',
+            'status'        => 'required',
+
+          
         ];
 
+        // Si es diferente a Post
+        if($this->method() !== 'PUT')
+        {
+            $rules ['name_company' ]    = 'required' . $this->id;
+            // $rules ['status' ]          = 'required' . $this->id;
+            // $rules ['name' ]            = 'required' . $this->id;
+            // $rules ['date' ]            = 'required' . $this->id;
+            // $rules ['denomination' ]    = 'required' . $this->id;
+            // $rules ['quantity' ]        = 'required' . $this->id;
+            // $rules ['code' ]            = 'required' . $this->id;
+            $rules ['order' ]           = 'required|numeric|unique:orders,order' . $this->id;            
+             
+        }
+
+        return $rules;   
        
     }
 
@@ -39,9 +59,13 @@ class SaveOrderRequest extends FormRequest
         return [
             'order.required'          => 'El numero de orden es obligatorio.',
             'order.unique'            => 'Este numero de orden ya ha sido registrado.',          
-            // 'name_company.required'   => 'Debe seleccionar un cliente.',
-            'denomination.required'   => 'Debe ingresar nombre de producto.',
-            'name.required'           => 'Debe seleccionar un operario.'
+            'name_company.required'   => 'Debe seleccionar un cliente.',
+            'denomination.required'   => 'Debe ingresar nombre.',
+            'name.required'           => 'Debe seleccionar un operario.',
+            'code.required'           => 'Debe ingresar un codigo de  pieza.',
+            'quantity.required'       => 'Debe ingresar una cantidad.',
+            'date.required'           => 'Debe seleccionar una fecha.',
+            'status.required'         => 'Debe seleccionar una estado .',
            
         ];
     }

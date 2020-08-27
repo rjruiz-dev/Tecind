@@ -18,7 +18,7 @@
                             <div class="input-group-addon">
                                 <i class="fa fa-edit"></i>
                             </div>                         
-                            {!! Form::select('order_id', $order, $piece->order_id, ['class' => 'form-control', 'id' => 'order_id', 'placeholder' => '']) !!}                              
+                            {!! Form::select('order_id', $order, $piece->order_id, ['class' => 'form-control', 'id' => 'order_id', 'placeholder' => '',  'style' => 'width:100%;']) !!}                              
                            
                         </div> 
                     </div> 
@@ -37,7 +37,7 @@
                             <div class="input-group-addon">
                                 <i class="fa fa-edit"></i>
                             </div>  
-                            {!! Form::select('part_piece', $part_piece, null, ['class' => 'form-control', 'id' => 'part_piece', 'placeholder' => 'Parte']) !!}                              
+                            {!! Form::select('part_piece', $part_piece, null, ['class' => 'form-control', 'id' => 'part_piece', 'placeholder' => '',  'style' => 'width:100%;']) !!}                              
                         </div>       
                     </div>           
                 </div>                
@@ -65,7 +65,7 @@
                         <div class="input-group-addon">
                             <i class="fa fa-cogs"></i>
                         </div>                                          
-                        {!! Form::select('machine_id', $machine, $piece->machine_id, ['class' => 'form-control select2', 'id' => 'machine_id', 'placeholder' => '']) !!}</div>
+                        {!! Form::select('machine_id', $machine, $piece->machine_id, ['class' => 'form-control select2', 'id' => 'machine_id', 'placeholder' => '',  'style' => 'width:100%;']) !!}</div>
                     </div>
                 </div>
                 <div class="form-group col-md-12">          
@@ -152,8 +152,9 @@
                         <div class="input-group-addon">
                             <i class="fa fa-edit"></i>
                         </div>        
-                        {!! Form::select('number_gag', $number_gag, $piece->gag_id, ['class' => 'form-control', 'id' => 'number_gag', 'placeholder' => '']) !!}                     
+                        {!! Form::select('number_gag', $number_gag, $piece->gag_id, ['class' => 'form-control', 'id' => 'number_gag', 'placeholder' => '',  'style' => 'width:100%;']) !!}                     
                     </div>
+                           
                 </div>                 
                 <div class="form-group">                  
                     {!! Form::label('diameter', 'Diametro de mordaza:') !!}
@@ -161,7 +162,7 @@
                         <div class="input-group-addon">
                             <i class="fa fa-edit"></i>
                         </div>                                                            
-                        {!! Form::text('diameter', $piece->gag['diameter'], ['class' => 'form-control', 'id' => 'diameter', 'readonly' => 'true', 'placeholder' => 'Diametro de sujección']) !!}                              
+                        {!! Form::text('diameter', $piece->gag['diameter'], ['class' => 'form-control', 'id' => 'diameter',  'placeholder' => 'Diametro de sujección']) !!}                              
                     </div>
                 </div>  
                 <div class="form-group">          
@@ -170,7 +171,7 @@
                         <div class="input-group-addon">
                             <i class="fa fa-edit"></i>
                         </div>        
-                        {!! Form::text('type_gag', $piece->gag['type_gag'], ['class' => 'form-control', 'id' => 'type_gag', 'readonly' => 'true', 'placeholder' => 'Tipo de mordaza']) !!}                     
+                        {!! Form::text('type_gag', $piece->gag['type_gag'], ['class' => 'form-control', 'id' => 'type_gag',  'placeholder' => 'Tipo de mordaza']) !!}                     
                     </div>
                 </div>
                 <div class="form-group">             
@@ -179,7 +180,7 @@
                         <div class="input-group-addon">
                             <i class="fa fa-edit"></i>
                         </div>                                     
-                        {!! Form::text('category_gag', $piece->gag['category_gag'], ['class' => 'form-control', 'id' => 'category_gag', 'readonly' => 'true', 'placeholder' => 'Categoria de mordaza']) !!}                            
+                        {!! Form::text('category_gag', $piece->gag['category_gag'], ['class' => 'form-control', 'id' => 'category_gag',  'placeholder' => 'Categoria de mordaza']) !!}                            
                     </div>
                 </div>            
             </div>      

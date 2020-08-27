@@ -35,13 +35,13 @@ class OrderController extends Controller
     { 
         $order = new Order();      
         
-        $this->authorize('create', $order);
+        $this->authorize('Create orders', $order);
                        
         return view('admin.orders.partials.form', [
-            'clients'   => Client::all(),      
+            'clients'   => Client::all(),                 
             'users'     => User::NotRole(['Admin', 'Supervisor'])->get(),
             'status'    => Statu::pluck('statu', 'id'),   
-            'orders'    => Order::pluck('denomination', 'id'),        
+            'orders'    => Order::pluck('denomination', 'denomination'),        
             // 'pieces'  => Order::pluck('denomination','denomination'), 
             'order'     => $order
         ]);
@@ -60,11 +60,12 @@ class OrderController extends Controller
                 //  Transacciones
                 DB::beginTransaction();              
                
-                $this->authorize('create', new Order);             
+                $this->authorize('Create orders', new Order);             
                 
                 // Creamos la orden
-                $order = new Order;             
-                $order->date = Carbon::parse($request->get('date'));                      
+                $order = new Order;   
+                $order->date = Carbon::createFromFormat('d/m/Y', $request->get('date'));           
+                // $order->date = Carbon::parse($request->get('date'));                      
                 $order->order = $request->get('order');
                 $order->denomination = $request->get('denomination');
                 $order->code = $request->get('code');
@@ -114,6 +115,7 @@ class OrderController extends Controller
     {
         $client = Client::with('company')->findOrFail($id);       
 
+        
         if($request->ajax())
         {
             return $client->toJson();
@@ -145,17 +147,19 @@ class OrderController extends Controller
     {   
         $order = Order::findOrFail($id);
 
-        $this->authorize('update', $order);        
+        $this->authorize('Update orders', $order);        
        
         // $clients = Client::with('company')->get();
         // $users = User::all();  
         
         // return view('admin.orders.partials.form', compact('order', 'users', 'clients'));        
         return view('admin.orders.partials.form', [
-            'clients'   => Client::all(),         
+            'clients'   => Client::all(),   
+            // 'clientes'   => Client::with('company')->findOrFail($id),               
             'users'     => User::NotRole(['Admin', 'Supervisor'])->get(),
             'status'    => Statu::pluck('statu', 'id'),      
-            'orders'    => Order::pluck('denomination', 'id'),           
+            'orders'    => Order::pluck('denomination', 'denomination'),  
+            // 'orders'    => Order::pluck('denomination', 'denomination')->groupBy('denomination')->get()->toArray(),        
             // 'products'  => Order::pluck('denomination', 'denomination'),
             'order'     => $order
         ]);        
@@ -169,7 +173,7 @@ class OrderController extends Controller
      * @param  \App\Order  $order
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(SaveOrderRequest $request, $id)
     {
         if ($request->ajax()){
             try {
@@ -178,11 +182,12 @@ class OrderController extends Controller
                  
                 $order = Order::findOrFail($id); 
 
-                $this->authorize('update', $order);
+                $this->authorize('Update orders', $order);
 
                 // Actualizamos la orden              
                 // $order->status = $request->get('status');
-                $order->date = Carbon::parse($request->get('date'));
+                $order->date = Carbon::createFromFormat('d/m/Y', $request->get('date'));           
+                // $order->date = Carbon::parse($request->get('date'));
                 $order->order = $request->get('order');
                 $order->denomination = $request->get('denomination');
                 $order->code = $request->get('code');
@@ -211,7 +216,7 @@ class OrderController extends Controller
     {
         $order = Order::findOrFail($id);
 
-        $this->authorize('delete', $order);
+        $this->authorize('Delete orders', $order);
 
         $order->delete();
     }
@@ -231,6 +236,7 @@ class OrderController extends Controller
                 ->addColumn('orden', function ($ordenes){
 
                     return '<i class="fa fa-file"></i>'.' '.$ordenes->order;
+                    
                 })                
                 ->addColumn('cliente', function ($ordenes){
 
@@ -248,7 +254,7 @@ class OrderController extends Controller
                 ->addColumn('pieza', function ($ordenes){
                     
                     return
-                    '<i class="fa fa-check-square-o"></i>'.' '.$ordenes->code."<br>".                   
+                    '<i class="fa fa-check-square-o"></i>'.' '.$ordenes->code."<br>".           
                     '<i class="fa fa-wrench"></i>'.' '.$ordenes->denomination;
                                
                 }) 

@@ -93,6 +93,7 @@ class TimeController extends Controller
     public function show(Request $request, $id)
     {     
         $order = Order::with('user')->findOrFail($id);   
+        //   $order = Piece::with('user','order')->findOrFail($id);   
 
         if($request->ajax())
         {
@@ -192,7 +193,7 @@ class TimeController extends Controller
     public function dataTable()
     {          
         $times = Time::with('machine', 'user', 'order')    
-        ->allowed()            
+        // ->allowed()            
         ->get();   
                      
         return dataTables::of($times)

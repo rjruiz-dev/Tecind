@@ -42,7 +42,7 @@ class Order extends Model implements Auditable
     
     public function pieces()
     {
-        return $this->hasMany(Pieces::class);
+        return $this->hasMany(Piece::class);
     }
 
     public function times()

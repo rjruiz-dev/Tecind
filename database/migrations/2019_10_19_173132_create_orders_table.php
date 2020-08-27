@@ -20,6 +20,12 @@ class CreateOrdersTable extends Migration
             $table->integer('user_id')->unsigned();          
             $table->integer('statu_id')->unsigned();          
 
+            // $table->integer('order')->nullable();
+            // $table->string('denomination')->nullable();
+            // $table->string('reason')->nullable();
+            // $table->string('code')->nullable();
+            // $table->integer('quantity')->nullable();      
+            
             $table->integer('order')->unique();
             $table->string('denomination');
             $table->string('reason')->nullable();

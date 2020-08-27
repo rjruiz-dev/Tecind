@@ -34,7 +34,7 @@ class UserController extends Controller
     {
         $user = new User();
 
-        $this->authorize('create', $user);            
+        $this->authorize('Create users', $user);            
        
         $roles = Role::with('permissions')->get(); 
         $permissions = Permission::pluck('name', 'id');         
@@ -55,7 +55,7 @@ class UserController extends Controller
                 //  Transacciones
                 DB::beginTransaction();
 
-                $this->authorize('create', new User);
+                $this->authorize('Create users', new User);
 
                 // Validar el formulario
                 $data = $request->validate([
@@ -98,7 +98,7 @@ class UserController extends Controller
      */
     public function show(User $user)
     {
-        $this->authorize('view', $user);
+        $this->authorize('View users', $user);
 
         // $user = User::findOrFail($id);
 
@@ -113,7 +113,7 @@ class UserController extends Controller
      */
     public function edit(User $user)
     {
-        $this->authorize('update', $user);
+        $this->authorize('Update users', $user);
 
         // $user = User::findOrFail($id);
         $roles = Role::with('permissions')->get(); 
@@ -136,7 +136,7 @@ class UserController extends Controller
                 // Transacciones
                 DB::beginTransaction();  
                 
-                $this->authorize('update', $user);
+                $this->authorize('Update users', $user);
               
                 // Actualizamos el usuario
                 $user->update($request->validated()); 
@@ -164,10 +164,10 @@ class UserController extends Controller
      */
     public function destroy(User $user)
     {
-        $this->authorize('delete', $user);
+        $this->authorize('Delete users', $user);
 
-        // $user = User::findOrFail($id);
-         $user->delete();
+        $user = User::findOrFail($id);
+        $user->delete();
     }
 
     public function dataTable()

@@ -17,7 +17,7 @@
                             <div class="input-group-addon">
                                 <i class="fa fa-file"></i>
                             </div>                                          
-                            {!! Form::select('order_id', $order, $time->order_id, ['class' => 'form-control select2', 'id' => 'order_id', 'placeholder' => '']) !!}                       
+                            {!! Form::select('order_id', $order, $time->order_id, ['class' => 'form-control select2', 'id' => 'order_id', 'placeholder' => '',  'style' => 'width:100%;']) !!}                       
                         </div>
                     </div>
                
@@ -73,7 +73,7 @@
                         <div class="input-group-addon">
                             <i class="fa fa-cogs"></i>
                         </div>                                          
-                        {!! Form::select('machine_id', $machine, $time->machine_id, ['class' => 'form-control select2', 'id' => 'machine_id', 'placeholder' => '']) !!}                                                         </div>
+                        {!! Form::select('machine_id', $machine, $time->machine_id, ['class' => 'form-control select2', 'id' => 'machine_id', 'placeholder' => '',  'style' => 'width:100%;']) !!}                                                         </div>
                     </div>
                 </div>
                 <div class="form-group col-md-12">          
@@ -102,7 +102,7 @@
                         <div class="input-group-addon">
                             <i class="fa fa-clock-o"></i>
                         </div>     
-                        {!! Form::text('amount', null, ['class' => 'form-control', 'id' => 'amount', 'placeholder' => 'Ingrese cantidad de piezas']) !!}                       
+                        {!! Form::text('amount', $time->quantity, ['class' => 'form-control', 'id' => 'amount', 'placeholder' => 'Ingrese cantidad de piezas']) !!}                       
                     </div>
                 </div>
                 <div class="form-group">          
@@ -111,7 +111,7 @@
                         <div class="input-group-addon">
                             <i class="fa fa-clock-o"></i>
                         </div>    
-                        {!! Form::text('minute', null, ['class' => 'form-control', 'id' => 'minute', 'placeholder' => 'Ingrese el tiempo de fabricación']) !!}                       
+                        {!! Form::text('minute', $time->machining_time, ['class' => 'form-control', 'id' => 'minute', 'placeholder' => 'Ingrese el tiempo de fabricación']) !!}                       
                     </div>
                 </div>
 
